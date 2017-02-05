@@ -1,5 +1,5 @@
 // Put your zillow.com API key here
-var zwsid = "X1-ZWz1f66lc3apzf_29gz1";
+var zwsid = "my_zillow_key";
 
 var request = new XMLHttpRequest();
 
@@ -39,10 +39,6 @@ function initialize () {
 
 	
 }
-
-
-
-
 function sendRequest () {
 	
     
@@ -61,7 +57,6 @@ function sendRequest () {
 		map.setCenter(results[0].geometry.location);
 	//document.getElementById("results").innerHTML += postal
 	
-	
 if (marker) {
             marker.setPosition(results[0].geometry.location);
         } else {
@@ -69,13 +64,8 @@ if (marker) {
           map: map,
           position: results[0].geometry.location	
 		  //markers.push(marker)
-	
 		});}
-	
-
 	 for_Zilla = postal.split(",")
-	
-
 	//document.getElementById("zilla").innerHTML = for_Zilla[0]+for_Zilla[1]+for_Zilla[2]+for_Zilla[3]
 	//document.getElementById("zilla").innerHTML = address
 	request.open("GET","proxy.php?zws-id="+zwsid+"&address="+for_Zilla[0]+"&citystatezip="+for_Zilla[1]+"+"+for_Zilla[2]+"+"+for_Zilla[3]);
@@ -90,16 +80,13 @@ if (marker) {
 //document.getElementById("zilla").innerHTML += value;
 		
 	}
-	
-	
+		
 	request.withCredentials = "true";
     request.send(null);	
 
   infowindow = new google.maps.InfoWindow({
   content:postal+" $"
   });
-
-
 	infowindow.open(map, marker);
 
 google.maps.event.addListener(map, 'click', function(event) {
@@ -108,37 +95,21 @@ google.maps.event.addListener(map, 'click', function(event) {
  lat_lon = event.latLng
 });
 
-
 function oneMarker(location) {
 geocoder.geocode({'location': lat_lon}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
-		
 		reverse_address = lat_lon
 		//document.getElementById("results").innerHTML += results[0].formatted_address+"<br>"
-		
 		zilla_reverse = results[0].formatted_address
-		
 		for_Zilla2 = zilla_reverse.split(",")
-		
-		
 		new_request.open("GET","proxy.php?zws-id="+zwsid+"&address="+for_Zilla2[0]+"&citystatezip="+for_Zilla2[1]+"+"+for_Zilla2[2]+"+"+for_Zilla2[3]);
 	new_request.onreadystatechange = function(){
 		
 		var xml2 = new_request.responseXML.documentElement;
         var value2 = xml2.getElementsByTagName("zestimate")[0].getElementsByTagName("amount")[0].innerHTML;
-		
-		
-		
 	document.getElementById("zilla").innerHTML += zilla_reverse+" "+"$"+value2+"<br>"
-	
 	new_content2 = infowindow2.getContent();
-
-	infowindow2.setContent(new_content2+value2)
-	
-	
-
-	
-	
+	infowindow2.setContent(new_content2+value2)	
 	}
 	
 	new_request.withCredentials = "true";
@@ -148,11 +119,7 @@ geocoder.geocode({'location': lat_lon}, function(results, status) {
   content:zilla_reverse+" $"
   });
 
-		infowindow2.open(map, marker);
-
-		
-		
-		
+		infowindow2.open(map, marker);		
 		if (marker && marker.setPosition) {
             marker.setPosition(reverse_address);
         } else {
@@ -161,36 +128,10 @@ geocoder.geocode({'location': lat_lon}, function(results, status) {
           position: reverse_address	
 		  //markers.push(marker)
 	
-		});}
-		
-   
-		
-
-	}
-});
-
-}
-
-
-
-
-
-
-	  }
-	  else {
+		});}}});}
+	  }	  else {
         alert("Geocode was not successful for the following reason: " + status);
       }
 	  });
-	  
-	  
-	  
+	  	  
 }
-
-
-
-
-
-
-
-	
-
