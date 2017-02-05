@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- 
+    Raksha Jayaram:
+	
+	source:1. http://www.zillow.com/howto/api/APIOverview.htm
+	2.https://developers.google.com/maps/documentation/javascript/geocoding?csw=1
+	3.https://developers.google.com/maps/documentation/javascript/markers
+	
+-->
+<html lang="en">
+  <head>
+    <title>Web Mashup: Display House Prices on a Map</title>
+    <meta charset="utf-8"/>
+    <script type="text/javascript" src="map.js"></script>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNgjZRE6LjvRcVjJ-OxhwkMQpepjQsOuk">
+    </script>
+  </head>
+  <body onload="initialize();">
+    <form id="do_reset">
+       <label>House address: <input type="text" id="addr"/></label>
+	   
+       
+       <input type="button" onclick="sendRequest();" value="Display Info"/>
+	   
+	   <input type ="button" onclick="clearform();" value="clear">
+    </form>
+    <div id="map" style="width: 600px; height: 500px;"></div><br/>
+    <span id="output" ></span>
+	<div id="results">&nbsp;</div>
+	
+	<div id="zilla">&nbsp;</div>
+	
+	<div id="reverse">&nbsp;</div>
+	
+	
+  </body>
+</html>
